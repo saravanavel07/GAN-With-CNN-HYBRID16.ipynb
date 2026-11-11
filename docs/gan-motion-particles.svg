@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="340" viewBox="0 0 1000 340" role="img" aria-labelledby="title desc">
+  <title id="title">Animated particles through a GAN generator and discriminator</title>
+  <desc id="desc">Glowing latent particles move through a generator to form an image, while a discriminator compares real and generated samples.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#111c35"/></linearGradient>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#43d9ff"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#d9fbff"/><stop offset=".35" stop-color="#49d9ff"/><stop offset="1" stop-color="#49d9ff" stop-opacity="0"/></radialGradient>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#9ab4d4" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="1000" height="340" rx="24" fill="url(#bg)"/>
+  <rect width="1000" height="340" rx="24" fill="url(#grid)"/>
+  <text x="34" y="38" fill="#dcecff" font-family="system-ui, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">FROM LATENT NOISE TO GENERATED IMAGES</text>
+  <text x="35" y="62" fill="#91a8c7" font-family="system-ui, sans-serif" font-size="12">An illustrative view of the adversarial learning loop</text>
+
+  <!-- latent input -->
+  <g font-family="system-ui, sans-serif">
+    <text x="48" y="111" fill="#7ddfff" font-size="13" font-weight="700">LATENT INPUT</text>
+    <circle cx="68" cy="158" r="8" fill="#42d9ff"/><circle cx="98" cy="142" r="5" fill="#a78bfa"/><circle cx="113" cy="177" r="7" fill="#42d9ff"/><circle cx="83" cy="198" r="5" fill="#f0abfc"/><circle cx="48" cy="188" r="4" fill="#a78bfa"/>
+    <text x="47" y="229" fill="#9aacc8" font-size="11">fixed random seed</text>
+  </g>
+
+  <!-- flow lines -->
+  <path d="M145 168 C190 168 203 168 245 168" fill="none" stroke="#34516f" stroke-width="2" stroke-dasharray="5 8"/>
+  <path d="M480 168 C520 168 534 168 572 168" fill="none" stroke="#34516f" stroke-width="2" stroke-dasharray="5 8"/>
+  <path d="M800 169 C850 169 854 246 796 266 C735 286 610 283 540 240" fill="none" stroke="#7052a2" stroke-width="2" stroke-dasharray="5 8" opacity=".8"/>
+
+  <!-- generator -->
+  <rect x="245" y="112" width="235" height="112" rx="16" fill="#101e34" stroke="#2c5472"/>
+  <text x="270" y="142" fill="#dcecff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">GENERATOR</text>
+  <text x="270" y="162" fill="#91a8c7" font-family="system-ui, sans-serif" font-size="11">learns to create candidate images</text>
+  <g fill="#173b56" stroke="#43d9ff" stroke-opacity=".7">
+    <rect x="270" y="179" width="30" height="24" rx="5"/><rect x="315" y="179" width="30" height="24" rx="5"/><rect x="360" y="179" width="30" height="24" rx="5"/><rect x="405" y="179" width="30" height="24" rx="5"/>
+  </g>
+  <g stroke="#43d9ff" stroke-opacity=".7"><path d="M300 191h15M345 191h15M390 191h15"/></g>
+
+  <!-- generated image preview -->
+  <g>
+    <text x="588" y="111" fill="#a8f0d2" font-family="system-ui, sans-serif" font-size="13" font-weight="700">GENERATED SAMPLE</text>
+    <rect x="590" y="125" width="116" height="93" rx="12" fill="#142a3d" stroke="#49d9b1" stroke-opacity=".7"/>
+    <circle cx="648" cy="171" r="34" fill="#183a58"/>
+    <circle cx="636" cy="160" r="18" fill="#2a7380" opacity=".75"><animate attributeName="r" values="16;21;16" dur="3.4s" repeatCount="indefinite"/></circle>
+    <circle cx="658" cy="178" r="20" fill="#8872bc" opacity=".68"><animate attributeName="r" values="20;15;20" dur="3.4s" repeatCount="indefinite"/></circle>
+    <circle cx="648" cy="171" r="9" fill="#c9f3dd" opacity=".9"><animate attributeName="opacity" values=".45;.95;.45" dur="2.2s" repeatCount="indefinite"/></circle>
+    <text x="588" y="239" fill="#9aacc8" font-family="system-ui, sans-serif" font-size="11">sample output</text>
+  </g>
+
+  <!-- discriminator -->
+  <rect x="760" y="112" width="198" height="112" rx="16" fill="#101e34" stroke="#7154a0"/>
+  <text x="783" y="142" fill="#e4d7ff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">DISCRIMINATOR</text>
+  <text x="783" y="163" fill="#a99bc4" font-family="system-ui, sans-serif" font-size="11">compares real and generated</text>
+  <rect x="783" y="180" width="150" height="8" rx="4" fill="#292449"/>
+  <rect x="783" y="180" width="92" height="8" rx="4" fill="url(#flow)"><animate attributeName="width" values="54;118;72;102;54" dur="4.8s" repeatCount="indefinite"/></rect>
+  <text x="783" y="207" fill="#9aacc8" font-family="system-ui, sans-serif" font-size="10">feedback updates both networks</text>
+
+  <!-- moving particles along the pipeline -->
+  <g filter="url(#softGlow)">
+    <circle r="5" fill="#8cf0ff"><animateMotion dur="3.1s" repeatCount="indefinite" path="M145 168 C190 168 203 168 245 168"/></circle>
+    <circle r="4" fill="#c5a7ff"><animateMotion dur="3.1s" begin="-1.1s" repeatCount="indefinite" path="M145 168 C190 168 203 168 245 168"/></circle>
+    <circle r="5" fill="#8cf0ff"><animateMotion dur="3.5s" begin="-.7s" repeatCount="indefinite" path="M480 168 C520 168 534 168 572 168"/></circle>
+    <circle r="4" fill="#ffd58a"><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" path="M800 169 C850 169 854 246 796 266 C735 286 610 283 540 240"/></circle>
+  </g>
+  <circle cx="250" cy="168" r="12" fill="url(#glow)" opacity=".7"><animate attributeName="opacity" values=".25;.85;.25" dur="2.5s" repeatCount="indefinite"/></circle>
+  <circle cx="575" cy="168" r="12" fill="url(#glow)" opacity=".7"><animate attributeName="opacity" values=".85;.25;.85" dur="2.5s" repeatCount="indefinite"/></circle>
+
+  <text x="35" y="310" fill="#8298b6" font-family="system-ui, sans-serif" font-size="11">Conceptual animation • not connected to a live training run</text>
+</svg>

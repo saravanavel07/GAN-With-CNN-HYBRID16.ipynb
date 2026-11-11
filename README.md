@@ -2,11 +2,19 @@
 
 A compact, notebook-based project focused on combining Generative Adversarial Networks (GANs) with Convolutional Neural Networks (CNNs) for image generation and feature learning.
 
-This repository contains a single Jupyter Notebook implementation that demonstrates the workflow for building, training, and evaluating a hybrid GAN-CNN model. The goal is to explore how CNN-based feature extraction can strengthen generator/discriminator learning in adversarial training.
+This repository contains a Jupyter Notebook implementation that demonstrates the workflow for building, training, and evaluating a hybrid GAN-CNN model. It is intended as a learning and experimentation project.
+
+## Live motion: latent particles to generated images
+
+The animated diagram below visualizes the GAN workflow: fixed latent inputs flow through the generator, while the discriminator provides adversarial feedback. It is an illustrative animation—not a live view of notebook training or evidence of model quality.
+
+![Animated GAN particle visualization](docs/gan-motion-particles.svg)
+
+If your Markdown viewer does not animate SVGs, open [`docs/gan-motion-particles.svg`](docs/gan-motion-particles.svg) directly. For the training-checkpoint visual-story guide, see [`docs/MOTION_VISUALIZATION_ARTICLE.md`](docs/MOTION_VISUALIZATION_ARTICLE.md).
 
 ## Overview
 
-Generative Adversarial Networks are powerful for learning data distributions and generating realistic samples. By integrating CNN layers, the model can better capture spatial patterns and local structures in visual data.
+Generative Adversarial Networks learn data distributions and generate samples. CNN layers help capture spatial patterns and local structure in image data. This project explores their use together in an adversarial image-generation workflow.
 
 This project is intended for:
 
@@ -18,6 +26,8 @@ This project is intended for:
 ## Repository Contents
 
 - `GAN_With_CNN_HYBRID16.ipynb` — the main notebook containing the implementation, training code, and experiment flow.
+- `docs/MOTION_VISUALIZATION_ARTICLE.md` — a storyboard and guide for interpreting generated-image checkpoints.
+- `docs/gan-motion-particles.svg` — an animated, illustrative particle diagram of the GAN workflow.
 
 ## Key Features
 
@@ -73,13 +83,14 @@ Then execute the notebook cells in order.
 
 ## Project Goal
 
-This project explores a practical hybrid approach where CNN layers improve the model's ability to learn meaningful visual features, while the GAN setup drives realistic data generation through adversarial learning.
+This project explores a practical hybrid approach where CNN layers learn meaningful visual features and adversarial training drives image generation. Results depend on the dataset, model configuration, and training process.
 
 ## Notes
 
 - The notebook is designed for experimentation and learning.
-- Hyperparameters such as learning rate, batch size, latent dimension, and epochs can be tuned for better results.
+- Hyperparameters such as learning rate, batch size, latent dimension, and epochs can be tuned.
 - Datasets can be replaced or extended depending on your target domain.
+- The README animation is a conceptual illustration; it does not connect to a running training session.
 
 ## License
 
